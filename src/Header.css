@@ -1,9 +1,26 @@
 .header{
-    background-color: blue;
-    padding: 7px;
-   
+    background-color: blue; 
 }
+
 #Trendings_div{
     background-color: black;
     color: white;
+    padding: 6px;
+}
+.fa{
+    color: white;
+    margin: 8px;
+    padding: 6px;
+}
+#Grace_news_id{
+    color: blue;
+}
+#header_col{
+    padding: 6px;
+    color: white;
+}
+.nav-item {
+    margin-left: 50px;
+    justify-content: center;
+  
 }
