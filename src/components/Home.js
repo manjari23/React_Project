@@ -1,9 +1,11 @@
-import React from 'react';
-import './Header.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { React, useEffect, useState } from 'react';
+import './Home.css';
+import './Detail.js'
 
 
-function Header() {
+function Home() {
+
+
 
   return (
     <>
@@ -49,17 +51,19 @@ function Header() {
                   <a className="nav-link" href="#">Contact us</a>
                 </li>
               </ul>
-
             </div>
           </div>
         </nav>
-        {/* nav ends */}
-        {/* card starts */}
-        <div className='row'>
-          </div>
       </div>
+      <br />
+      <br />
+     <div className='row'>
+     
+       
+      
+     </div>
     </>
   );
 }
 
-export default Header;  
+export default Home;  

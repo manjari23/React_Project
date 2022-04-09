@@ -1,7 +1,8 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './Header';
+import Detail from './components/Detail';
+import Home from './components/Home';
 
 function App() {
   
@@ -9,7 +10,9 @@ function App() {
     <div >
       <Router>
       <Switch>
-        <Route path='/header' component={ Header } />
+        <Route path='/Detail' component={ Detail } />
+        <Route path='/Home' component={ Home } />
+        
        
       </Switch >
       </Router>
