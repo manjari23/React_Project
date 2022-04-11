@@ -1,6 +1,4 @@
 import { React, useEffect, useState } from 'react';
-
-
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
@@ -8,7 +6,8 @@ import Button from "react-bootstrap/Button";
 
 
 
-function Header() {
+
+function Detail() {
 
   const [data, setData] = useState([]);
 
@@ -34,15 +33,15 @@ function Header() {
         {
           data.map((item, index) => {
             return (
-              <div className='col-4'>
-                <Card >
-                  <Card.Img variant="top" src={item.imageUrl} />
+              <div className='col-4 mt-4'>
+                <Card className='card'>
+                  <Card.Img variant="top" src={item.imageUrl} className='cardimg'/>
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Text>
                       {item.content}
                     </Card.Text>
-                    <Button variant="primary" url={item.url}>Go somewhere</Button>
+                   <a href={item.url}> Read more</a>
                   </Card.Body>
                 </Card>
               </div>
@@ -55,4 +54,4 @@ function Header() {
   );
 }
 
-export default Header;  
+export default Detail;  

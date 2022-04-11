@@ -1,9 +1,33 @@
 import { React, useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import './Home.css';
-import './Detail.js'
+
 
 
 function Home() {
+
+    const [data, setData] = useState([]);
+
+    const history = useHistory();
+
+    const goToReceiver = () => {
+      history.push("/Detail");
+    }
+  
+
+  useEffect(() => {
+    fetch('https://inshortsapi.vercel.app/news?category=all')
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result.data);
+        console.log(result)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
 
 
@@ -42,7 +66,7 @@ function Home() {
                   <a className="nav-link" href="#">Fashion & Lifestyle</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Business & Economy</a>
+                  <a className="nav-link" href="" onClick={goToReceiver}>Business & Economy</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">Healthy Life</a>
@@ -57,11 +81,27 @@ function Home() {
       </div>
       <br />
       <br />
-     <div className='row'>
-     
-       
-      
-     </div>
+      <div className='row d-flex justify-content-center'>
+        {
+          data.map((item) => {
+            return (
+              <div className='col-4 mt-4'>
+                <Card className="card">
+                  <Card.Img variant="top" src={item.imageUrl} className='cardimg'/>
+                  <Card.Body>
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>
+                      {item.content}
+                    </Card.Text>
+                   <a href={item.url}>Learn more</a>
+                  </Card.Body>
+                </Card>
+              </div>
+            )
+          }
+          )
+        }
+      </div>
     </>
   );
 }
