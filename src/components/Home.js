@@ -33,7 +33,8 @@ function Home() {
 
   return (
     <>
-      <header className='header'>
+    <div className='wrapper'>
+    <header className='header'>
         <div className="row text-center">
           <div className="col-1 text-right"></div>
           <div className="col-1 text-right" id='Trendings_div'>Trendings</div>
@@ -46,6 +47,8 @@ function Home() {
           </div>
         </div>
       </header>
+      <div className='container'>
+    
       <div className='row text-center'><h1 id="Grace_news_id">Grace News</h1></div>
       <div className='row text-center'><p >Lorem ipsum dummy fames ac ante text</p></div>
       <div className='row'>
@@ -85,8 +88,8 @@ function Home() {
         {
           data.map((item) => {
             return (
-              <div className='col-4 mt-4'>
-                <Card className="card">
+              <div className='col-12  col-lg-4  mt-4' >
+                <Card className="card" style = {{borderStyle:'solid',borderColor:'black'}}>
                   <Card.Img variant="top" src={item.imageUrl} className='cardimg'/>
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
@@ -101,6 +104,8 @@ function Home() {
           }
           )
         }
+      </div>
+      </div>
       </div>
     </>
   );
