@@ -10,8 +10,14 @@ function App() {
     <div >
       <Router>
       <Switch>
-        <Route path='/Detail' component={ Detail } />
-        <Route path='/Home' component={ Home } />
+        
+        <Route exact path='/' ><Home key= 'General' category= "all" /></Route>
+        <Route exact path='/Trending' ><Home key= 'Trending' category= "Trending" /></Route>
+        <Route exact path='/Fashion_and_Lifestyle' ><Home key= 'Fashion_and_Lifestyle' category= "Fashion_and_Lifestyle" /></Route>
+        <Route exact path='/Business' ><Home key= 'Business' category= "Business" /></Route>
+        <Route exact path='/Healthy_Life' ><Home key= 'Healthy_Life' category= "Healthy_Life" /></Route>
+        <Route exact path='/Contact_us' ><Home key= 'Contact_us' category= "Contact_us" /></Route>
+
         
        
       </Switch >

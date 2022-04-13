@@ -1,15 +1,16 @@
 import { React, useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory ,Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import './Home.css';
+import Loader from './Loader.js';
 
 
 
 function Home() {
 
     const [data, setData] = useState([]);
-
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
 
     const goToReceiver = () => {
@@ -22,6 +23,7 @@ function Home() {
       .then((res) => res.json())
       .then((result) => {
         setData(result.data);
+        setLoading(true);
         console.log(result)
       })
       .catch((err) => {
@@ -33,6 +35,7 @@ function Home() {
 
   return (
     <>
+  
     <div className='wrapper'>
     <header className='header'>
         <div className="row text-center">
@@ -47,6 +50,7 @@ function Home() {
           </div>
         </div>
       </header>
+  
       <div className='container'>
     
       <div className='row text-center'><h1 id="Grace_news_id">Grace News</h1></div>
@@ -60,22 +64,22 @@ function Home() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="#">Home</a>
+                  <Link className="nav-link" aria-current="page" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">News & Trending</a>
+                  <Link className="nav-link" to="/Trending">News & Trending</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Fashion & Lifestyle</a>
+                  <Link className="nav-link" to="/Fashion_and_Lifestyle">Fashion & Lifestyle</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="" onClick={goToReceiver}>Business & Economy</a>
+                  <Link className="nav-link" to="/Business" onClick={goToReceiver}>Business & Economy</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Healthy Life</a>
+                  <Link className="nav-link" to="/Healthy_Life">Healthy Life</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Contact us</a>
+                  <Link className="nav-link" to="/Contact_us">Contact us</Link>
                 </li>
               </ul>
             </div>
@@ -84,8 +88,9 @@ function Home() {
       </div>
       <br />
       <br />
-      <div className='row d-flex justify-content-center'>
-        {
+      <div className='wrapper d-flex justify-content-center'>
+      { loading ? <div className='row d-flex justify-content-center'>
+       {
           data.map((item) => {
             return (
               <div className='col-12  col-lg-4  mt-4' >
@@ -93,10 +98,10 @@ function Home() {
                   <Card.Img variant="top" src={item.imageUrl} className='cardimg'/>
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
+                    <Card.Text  className='Card_text'>
                       {item.content}
                     </Card.Text>
-                   <a href={item.url}>Learn more</a>
+                   <a href={item.url}>Learn more...</a>
                   </Card.Body>
                 </Card>
               </div>
@@ -104,6 +109,7 @@ function Home() {
           }
           )
         }
+      </div>: <Loader/>}
       </div>
       </div>
       </div>

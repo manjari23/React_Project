@@ -13,7 +13,7 @@ function Detail() {
 
 
   useEffect(() => {
-    fetch('https://inshortsapi.vercel.app/news?category=business')
+    fetch('https://inshortsapi.vercel.app/news?category=${props.category}')
       .then((res) => res.json())
       .then((result) => {
         setData(result.data);

@@ -13,6 +13,7 @@
     padding: 6px;
 }
 #Grace_news_id{
+    font-family: 'Times New Roman', Times, serif;
     color: blue;
 }
 #header_col{
@@ -32,4 +33,14 @@
 .card{
     width: 90%;
     height: 100%;
+}
+
+.Card_text{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri;
+    display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 5.6em;
+  line-height: 2em;
 }
