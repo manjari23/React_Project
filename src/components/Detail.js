@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { useParams} from "react-router-dom";
 
 
 
@@ -10,10 +10,10 @@ import Button from "react-bootstrap/Button";
 function Detail() {
 
   const [data, setData] = useState([]);
-
+ 
 
   useEffect(() => {
-    fetch('https://inshortsapi.vercel.app/news?category=${props.category}')
+    fetch('https://inshortsapi.vercel.app/news?category=Business')
       .then((res) => res.json())
       .then((result) => {
         setData(result.data);
