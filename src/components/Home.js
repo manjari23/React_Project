@@ -1,29 +1,31 @@
 import { React, useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
-import './Home.scss';
+import './Home.css';
 import Loader from './Loader.js';
 
 
 
 function Home() {
   
+  const category = useLocation();
+  console.log(category,'lllllllllllll')
+  console.log(category.pathname,'location')
 
-
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [NewsData, setNewsData] = useState([]);
+  const [spinner, setspinner] = useState(false);
 
 
 
   useEffect(() => {
 
-    fetch('https://inshortsapi.vercel.app/news?category=all')
+    fetch('https://inshortsapi.vercel.app/news?category=`${category.pathname}`')
       .then((res) => res.json())
       .then((result) => {
-        setData(result.data);
-        setLoading(true);
-        console.log(result)
+        setNewsData(result.data);
+        setspinner(true);
+     
       })
       .catch((err) => {
         console.log(err);
@@ -36,12 +38,6 @@ function Home() {
     <>
 
       <div className='wrapper'>
-
-
-
-
-
-
 
 
         
@@ -81,9 +77,9 @@ function Home() {
         <br />
         <div className='container'>
           <div className='wrapper d-flex justify-content-center'>
-            {loading ? <div className='row d-flex justify-content-center'>
+            {spinner ? <div className='row d-flex justify-content-center'>
               {
-                data.map((item,index) => {
+                NewsData.map((item,index) => {
                   return (
                     <div className='col-12  col-lg-4  mt-4' key={index} >
                       <Card className="card" style={{ borderStyle: 'solid', borderColor: 'black' }}>
