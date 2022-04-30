@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 import './Home.css';
@@ -7,12 +7,13 @@ import Loader from './Loader.js';
 
 
 
-function Home() {
+function Home(props) {
 
-  const location = useLocation();
-  console.log(location, 'location')
-  console.log(location.pathname.location, 'location')
-
+  const location  = useLocation();
+  
+  // const searchParams = new URLSearchParams(location.search);
+  const category=  location.pathname
+  console.log(category, 'category')
   const [NewsData, setNewsData] = useState([]);
   const [spinner, setspinner] = useState(false);
 
@@ -21,8 +22,8 @@ function Home() {
   useEffect(() => {
     const url = `https://inshortsapi.vercel.app/news?category=${location.pathname}`
     console.log(url)
-    const aa = fetch(`https://inshortsapi.vercel.app/news?category=${location.pathname}`)
-    console.log(aa, "aa")
+    fetch('https://inshortsapi.vercel.app/news?category=all')
+    
       .then((res) => res.json())
       .then((result) => {
         setNewsData(result.data);
